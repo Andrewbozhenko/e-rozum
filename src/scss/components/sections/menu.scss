@@ -1,0 +1,53 @@
+.menu {
+  @media (max-width: em(992)) {
+    display: none;
+  }
+
+  &__list {
+    display: flex;
+    gap: 4rem;
+  }
+
+  &__item {
+    position: relative;
+    width: max-content;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    letter-spacing: 0.012em;
+
+    @media (max-width: em(992)) {
+      font-size: 1.6rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -1rem;
+      width: 0;
+      height: 2px;
+      background-color: var(--clr-default-400);
+      transform: translate(-50%, 0);
+      transition: width 0.3s;
+    }
+
+    &:hover::before {
+      width: 100%;
+      transition: width 0.3s;
+    }
+
+    &-total {
+      position: absolute;
+      right: -2rem;
+      top: -1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 1.6rem;
+      height: 1.6rem;
+      font-size: 1rem;
+      background-color: var(--clr-default-400);
+    }
+  }
+}

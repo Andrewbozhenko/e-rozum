@@ -1,0 +1,55 @@
+.button__circle {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: max-content;
+  font-size: 1.4rem;
+  line-height: 143%;
+  color: var(--clr-default-400);
+
+  span {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 4.8rem;
+    height: 4.8rem;
+    background-color: var(--clr-default-400);
+
+    svg {
+      z-index: 1;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url(/img/ui/button-circle.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+  }
+
+  &:hover {
+    span {
+      &::before {
+        opacity: 1;
+        transition: opacity var(--transition);
+      }
+    }
+  }
+
+  &:disabled {
+    color: var(--clr-default-320);
+
+    span {
+      background-color: var(--clr-default-320);
+    }
+  }
+}

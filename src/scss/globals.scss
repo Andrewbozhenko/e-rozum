@@ -14,18 +14,27 @@
 // </ОБНУЛЕНИЕ>===============================================================
 
 // <ПЕРЕМЕННЫЕ>===============================================================
-$containerWidth: 123rem;
+$containerWidth: 126rem;
 
 :root {
   // Base
-  --font-family: "Montserrat", sans-serif;
-  --font-weight: 500;
-  --content-width: 120rem;
+  --font-family: "e-Ukraine", sans-serif;
+  --font-weight: 400;
+  --content-width: 123rem;
   --container-offset: 1.5rem;
   --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
   --transition: 0.3s;
 
   // Colors
+  --clr-default-100: #fff;
+  --clr-default-200: #eaeaea;
+  --clr-default-250: #dddddd;
+  --clr-default-300: #8e8e8e;
+  --clr-default-320: #858585;
+  --clr-default-350: #626262;
+  --clr-default-400: #07852f;
+  --clr-default-800: #0a0a0a;
+  --clr-default-900: #000000;
 }
 
 // </ПЕРЕМЕННЫЕ>==============================================================
@@ -33,6 +42,17 @@ $containerWidth: 123rem;
 // <ОБОЛОЧКИ>================================================================
 body {
   font-size: 1.6rem;
+  letter-spacing: 0.012em;
+  color: var(--clr-default-200);
+
+  &.lock {
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    -ms-touch-action: none;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
 }
 
 main {
@@ -42,12 +62,26 @@ main {
 }
 
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   width: 100%;
   min-width: 32rem;
   min-height: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: url(/img/ui/bg.png);
+    background-size: cover;
+    background-repeat: repeat;
+  }
 }
 
 // </ОБОЛОЧКИ>===============================================================
@@ -63,13 +97,34 @@ main {
 }
 
 // Components - UI
+@import "./components/ui/burger";
+@import "./components/ui/logo";
+@import "./components/ui/button-enroll";
+@import "./components/ui/button-circle";
+@import "./components/ui/button-fillArrow";
+@import "./components/ui/link-back";
+@import "./components/ui/suggestions-card";
+
 // Components - UI
 
 // Components - Cards
 // Components - Cards
 
 // Components - Sections
-@import "./components/section/header";
+@import "./components/sections/header";
+@import "./components/sections/hero/hero";
+@import "./components/sections/subjects/subjects";
+@import "./components/sections/teachers/teachers";
+@import "./components/sections/reviews/reviews";
+@import "./components/sections/articles/articles";
+@import "./components/sections/price/price";
+@import "./components/sections/form/form";
+@import "./components/sections/first/first";
+@import "./components/sections/article/article";
+@import "./components/sections/error/error";
+@import "./components/sections/success/success";
+@import "./components/sections/footer";
+@import "./components/sections/menu";
 // Components - Sections
 
 // Components - Common
