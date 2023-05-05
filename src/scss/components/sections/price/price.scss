@@ -1,0 +1,210 @@
+.price {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+
+    @media (max-width: em(992)) {
+      gap: 4rem;
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+
+    @media (max-width: em(992)) {
+      flex-direction: column;
+      align-items: initial;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 48rem;
+
+    @media (max-width: em(992)) {
+      gap: 2rem;
+    }
+  }
+
+  &__description {
+    p {
+      line-height: 150%;
+    }
+  }
+
+  &__subjects {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 60rem;
+
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 0.8rem;
+
+      @media (max-width: em(575)) {
+        flex-wrap: nowrap;
+        overflow: auto;
+        margin-right: -3rem;
+        padding-right: 1.5rem;
+        width: calc(100% + 1.5rem);
+      }
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0.2rem solid var(--clr-default-200);
+      border-radius: 3rem;
+      padding-right: 3rem;
+      padding-left: 3rem;
+      width: max-content;
+      min-height: 5rem;
+    }
+
+    @media (max-width: em(992)) {
+      gap: 2rem;
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+  }
+
+  &__card {
+    border: 0.1rem solid var(--clr-default-300);
+    border-radius: 1.5rem;
+    transition: border var(--transition);
+
+    a {
+      display: flex;
+      flex-direction: column;
+      padding-top: 4rem;
+      padding-right: 2.5rem;
+      padding-bottom: 4rem;
+      padding-left: 2.5rem;
+      min-height: 100%;
+
+      @media (max-width: em(575)) {
+        padding: 2rem;
+      }
+    }
+
+    &-total {
+      margin-bottom: 3rem;
+      font-weight: 500;
+      text-align: center;
+
+      @media (max-width: em(575)) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &-title {
+      margin-right: auto;
+      margin-bottom: 2.5rem;
+      margin-left: auto;
+      max-width: 22rem;
+      font-weight: 500;
+      font-size: fluid(3.2rem, 2rem);
+      line-height: 125%;
+      text-align: center;
+
+      @media (max-width: em(575)) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &-lesson {
+      position: relative;
+      margin-right: auto;
+      margin-bottom: 2.5rem;
+      margin-left: auto;
+      padding-bottom: 2rem;
+      width: max-content;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 80%;
+        height: 0.1rem;
+        background-color: var(--clr-default-300);
+        transform: translateX(-50%);
+      }
+
+      @media (max-width: em(575)) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3rem;
+
+      @media (max-width: em(575)) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &-item {
+      position: relative;
+      padding-left: 3.5rem;
+      line-height: 150%;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        border-radius: 50%;
+        width: 2.4rem;
+        height: 2.4rem;
+        background-color: var(--clr-default-400);
+        transform: translateY(-50%);
+      }
+    }
+
+    &-price {
+      margin-bottom: 3rem;
+      font-weight: 500;
+      font-size: fluid(3.2rem, 2.2rem);
+      text-align: center;
+
+      @media (max-width: em(575)) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: auto;
+      margin-left: auto;
+      border-radius: 3rem;
+      min-width: 17rem;
+      min-height: 4rem;
+      text-align: center;
+      background-color: var(--clr-default-400);
+    }
+
+    &:hover {
+      border: 0.1rem solid var(--clr-default-400);
+      transition: border var(--transition);
+    }
+  }
+}

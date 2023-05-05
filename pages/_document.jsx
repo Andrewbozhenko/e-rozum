@@ -6,7 +6,28 @@ const Document = () => {
       <Head>
         <link
           rel="preload"
-          href="/fonts/Montserrat-Regular.woff2"
+          href="/fonts/e-UkraineHead-Bold.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+         <link
+          rel="preload"
+          href="/fonts/e-UkraineHead-Light.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+         <link
+          rel="preload"
+          href="/fonts/e-UkraineHead-Medium.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+          <link
+          rel="preload"
+          href="/fonts/e-UkraineHead-Regular.woff2"
           as="font"
           type="font/woff2"
           crossOrigin=""

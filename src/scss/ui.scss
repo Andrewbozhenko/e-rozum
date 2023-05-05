@@ -7,3 +7,23 @@
   white-space: nowrap;
   clip: rect(0 0 0 0);
 }
+
+.section {
+  padding-top: 10rem;
+
+  @media (max-width: em(575)) {
+    padding-top: 5rem;
+  }
+}
+
+.title {
+  font-weight: 300;
+  font-size: fluid(4rem, 2.2rem);
+  line-height: 140%;
+}
+
+.description {
+  p {
+    line-height: 150%;
+  }
+}
