@@ -68,11 +68,7 @@ export const Form = () => {
                 <div className="form__input">
                   <label>
                     <span>Телефон</span>
-                    <input
-                      placeholder="Телефон"
-                      type="number"
-                      {...register("phone")}
-                    />
+                    <input placeholder="Телефон" {...register("phone")} />
                   </label>
                 </div>
                 <div className="form__input">
