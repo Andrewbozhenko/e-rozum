@@ -1,7 +1,7 @@
 export const ButtonFillArrow = ({ text }) => {
   return (
     <button className="button__fill-arrow">
-      {text}
+      <span>{text}</span>
       <span>
         <svg
           width="15"
