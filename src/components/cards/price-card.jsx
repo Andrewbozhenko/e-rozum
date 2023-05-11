@@ -9,7 +9,7 @@ export const PriceCard = (props) => {
 
   return (
     <li className="price__card">
-      <Link href="#">
+      <Link href="/#contacts">
         <div className="price__card-total">{`${priceTotal} ₴`}</div>
         <h3 className="price__card-title">{title}</h3>
         <div className="price__card-lesson">{`${lesson} занять`}</div>

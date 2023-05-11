@@ -79,8 +79,13 @@ main {
     bottom: 0;
     z-index: -1;
     background-image: url(/img/ui/bg.png);
-    background-size: cover;
+    background-position: 50%;
+    background-size: auto;
     background-repeat: repeat;
+  }
+
+  &.no-overflow {
+    overflow: initial;
   }
 }
 

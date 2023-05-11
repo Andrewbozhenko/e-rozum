@@ -1,6 +1,13 @@
-export const ButtonFillArrow = ({ text }) => {
+import { useRouter } from "next/router";
+
+export const ButtonFillArrow = ({ text, onClick }) => {
+  const { push } = useRouter();
+
   return (
-    <button className="button__fill-arrow">
+    <button
+      className="button__fill-arrow"
+      onClick={onClick ? onClick : () => push("/")}
+    >
       <span>{text}</span>
       <span>
         <svg

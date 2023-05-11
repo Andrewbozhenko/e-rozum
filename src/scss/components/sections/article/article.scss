@@ -1,4 +1,10 @@
 .article {
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 7.2rem;
+  }
+
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -6,6 +12,8 @@
   }
 
   &__top {
+    position: sticky;
+    top: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,7 +50,7 @@
     &-text {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 2.4rem;
       p {
         font-weight: 300;
         line-height: 150%;
@@ -52,7 +60,7 @@
     &-list {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 2rem;
       list-style: disc;
       padding-left: 2rem;
     }

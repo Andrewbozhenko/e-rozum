@@ -99,23 +99,23 @@
     a {
       font-size: 1.4rem;
       line-height: 114%;
-    }
 
-    &::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -1rem;
-      width: 0;
-      height: 2px;
-      background-color: var(--clr-default-400);
-      transform: translate(-50%, 0);
-      transition: width 0.3s;
-    }
+      &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -1rem;
+        width: 0;
+        height: 2px;
+        background-color: var(--clr-default-400);
+        transform: translate(-50%, 0);
+        transition: width 0.3s;
+      }
 
-    &:hover::before {
-      width: 100%;
-      transition: width 0.3s;
+      &:hover::before {
+        width: 100%;
+        transition: width 0.3s;
+      }
     }
   }
 

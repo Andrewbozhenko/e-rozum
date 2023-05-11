@@ -67,7 +67,7 @@ export const Reviews = () => {
   }, [swiperInstance, swiperDestroyed]);
 
   return (
-    <section className="reviews section">
+    <section id="reviews" className="reviews section">
       <div className="container">
         <div className="reviews__wrapper">
           <div className="reviews__content">

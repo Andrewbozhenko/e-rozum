@@ -86,7 +86,7 @@
     border-radius: 1.5rem;
     transition: border var(--transition);
 
-    a {
+    > a {
       display: flex;
       flex-direction: column;
       justify-content: space-between;

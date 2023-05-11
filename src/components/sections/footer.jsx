@@ -10,55 +10,55 @@ export const Footer = () => {
             <div className="footer__logo">
               <Logo />
               <div className="footer__policy">
-                <p>2020 - 2023. Всі права захищені.</p>
+                <p>2020 - {new Date().getFullYear()}. Всі права захищені.</p>
               </div>
             </div>
             <div className="footer__links">
               <ul className="footer__list">
                 <li className="footer__item">
-                  <Link href="#">Предмети</Link>
+                  <Link href="/#subjects">Предмети</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Ціна</Link>
+                  <Link href="/#prices">Ціна</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Вчителі</Link>
+                  <Link href="/#teachers">Вчителі</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Акції</Link>
+                  <Link href="/suggestions">Акції</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Відгуки</Link>
+                  <Link href="/#reviews">Відгуки</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Цікаві статті</Link>
+                  <Link href="/articles">Цікаві статті</Link>
                 </li>
               </ul>
 
               <ul className="footer__list">
                 <li className="footer__item">
-                  <Link href="#">Математика</Link>
+                  <Link href="/#price">Математика</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Хімія</Link>
+                  <Link href="/#price">Хімія</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Українська</Link>
+                  <Link href="/#price">Українська</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Біологія</Link>
+                  <Link href="/#price">Біологія</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Англійська</Link>
+                  <Link href="/#price">Англійська</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Географія</Link>
+                  <Link href="/#price">Географія</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Історія України</Link>
+                  <Link href="/#price">Історія України</Link>
                 </li>
                 <li className="footer__item">
-                  <Link href="#">Фізика</Link>
+                  <Link href="/#price">Фізика</Link>
                 </li>
               </ul>
             </div>
@@ -68,7 +68,10 @@ export const Footer = () => {
               <p className="footer__social-title">Слідкуй за нами тут:</p>
               <ul className="footer__social-list">
                 <li className="footer__social-item">
-                  <Link href="#">
+                  <a
+                    href="https://instagram.com/e_rozym?igshid=NTc4MTIwNjQ2YQ=="
+                    target="_blank"
+                  >
                     <svg
                       width="33"
                       height="33"
@@ -97,10 +100,13 @@ export const Footer = () => {
                         </clipPath>
                       </defs>
                     </svg>
-                  </Link>
+                  </a>
                 </li>
                 <li className="footer__social-item">
-                  <Link href="#">
+                  <a
+                    href="https://instagram.com/e_rozym?igshid=NTc4MTIwNjQ2YQ=="
+                    target="_blank"
+                  >
                     <svg
                       width="33"
                       height="33"
@@ -137,7 +143,7 @@ export const Footer = () => {
                         </clipPath>
                       </defs>
                     </svg>
-                  </Link>
+                  </a>
                 </li>
               </ul>
 

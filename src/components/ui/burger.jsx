@@ -139,16 +139,17 @@
 //   );
 // };
 
-import { MenuItem } from "@components/sections/header/MenuItem";
-import Link from "next/link";
+import { MenuItem } from "@components/sections/header/menuItem";
 import React, { useState } from "react";
 import { MENU } from "@utils";
 import { Logo } from ".";
 import { ButtonCircle } from "./button-circle";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-export const Burger = (props) => {
+export const Burger = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { push } = useRouter();
 
   useEffect(() => {
     if (isOpen) {
@@ -183,7 +184,10 @@ export const Burger = (props) => {
         }`}
         onClick={handleOverlayClick}
       >
-        <div className="burger__menu-wrapper">
+        <div
+          className="burger__menu-wrapper"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="burger__menu-top">
             <Logo />
           </div>
@@ -194,12 +198,16 @@ export const Burger = (props) => {
                 total={item.total}
                 href={item.href}
                 name={item.name}
+                onClick={toggleMenu}
               />
             ))}
           </ul>
           <ul className="footer__social-list">
             <li className="footer__social-item">
-              <Link href="#">
+              <a
+                href="https://instagram.com/e_rozym?igshid=NTc4MTIwNjQ2YQ=="
+                target="_blank"
+              >
                 <svg
                   width="33"
                   height="33"
@@ -228,10 +236,13 @@ export const Burger = (props) => {
                     </clipPath>
                   </defs>
                 </svg>
-              </Link>
+              </a>
             </li>
             <li className="footer__social-item">
-              <Link href="#">
+              <a
+                href="https://instagram.com/e_rozym?igshid=NTc4MTIwNjQ2YQ=="
+                target="_blank"
+              >
                 <svg
                   width="33"
                   height="33"
@@ -268,11 +279,17 @@ export const Burger = (props) => {
                     </clipPath>
                   </defs>
                 </svg>
-              </Link>
+              </a>
             </li>
           </ul>
           <div className="burger__bottom">
-            <ButtonCircle text="спробувати урок" />
+            <ButtonCircle
+              text="спробувати урок"
+              onClick={() => {
+                toggleMenu();
+                push("/#contacts");
+              }}
+            />
           </div>
         </div>
       </div>

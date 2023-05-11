@@ -1,8 +1,11 @@
 .success {
   display: flex;
+  flex-grow: 1;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -11,8 +14,12 @@
     gap: 3rem;
     border: 0.1rem solid var(--clr-default-300);
     border-radius: 0.8rem;
-    padding: 1.5rem;
+    padding: 3.2rem;
     min-height: 65rem;
+
+    @media (max-width: em(992)) {
+      min-height: initial;
+    }
   }
 
   &__text {

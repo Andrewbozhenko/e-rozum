@@ -1,19 +1,73 @@
-import { ButtonFillArrow } from "@components/ui/button-fillArrow";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-export const Form = () => {
-  const { register, handleSubmit, watch, setValue } = useForm({
-    defaultValues: {
-      personType: "студент",
-    },
-  });
+export const Form = (props) => {
+  const { withSubject } = props;
+  const { push, query } = useRouter();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const teacher = query?.person;
+
+  const { register, handleSubmit, watch, reset, setValue, formState } = useForm(
+    {
+      defaultValues: {
+        firstName: "",
+        secondName: "",
+        phone: "",
+        telegram: "",
+        subject: "",
+        personType: "студент",
+      },
+    }
+  );
+
+  const firstNameError = formState.errors?.firstName;
+  const secondNameError = formState.errors?.secondName;
+  const phoneError = formState.errors?.phone;
+  const subjectError = formState.errors?.subject;
+
+  // **Local state
+  const [isError, setIsError] = useState(false);
+
+  const onSubmit = async (data) => {
+    try {
+      setIsError(false);
+
+      const resp = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          type: withSubject ? "subject" : "contact",
+        }),
+      });
+
+      if (resp.status !== 200) {
+        throw resp;
+      }
+
+      reset();
+
+      push("/success");
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+      setIsError(true);
+    }
   };
 
+  useEffect(() => {
+    if (!teacher) return;
+
+    setValue("personType", "вчитель");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [teacher]);
+
   return (
-    <section className="form section">
+    <section id="contacts" className="form section">
       <div className="container">
         <div className="form__wrapper">
           <div className="form__text">
@@ -53,46 +107,124 @@ export const Form = () => {
                 </button>
               </div>
               <div className="form__inner">
-                <div className="form__input">
+                <div
+                  className={
+                    firstNameError ? "form__input error" : "form__input"
+                  }
+                >
                   <label>
-                    <span>Яке Ваше імʼя?</span>
-                    <input placeholder="Iмʼя" {...register("firstName")} />
-                  </label>
-                </div>
-                <div className="form__input">
-                  <label>
-                    <span>Яке Ваше прізвище?</span>
-                    <input placeholder="Прізвище" {...register("secondName")} />
-                  </label>
-                </div>
-                <div className="form__input">
-                  <label>
-                    <span>Телефон</span>
-                    <input placeholder="Телефон" {...register("phone")} />
-                  </label>
-                </div>
-                <div className="form__input">
-                  <label>
-                    <span>Email</span>
+                    <span>Яке Ваше імʼя?*</span>
                     <input
-                      placeholder="Email"
-                      type="email"
-                      {...register("email")}
+                      placeholder="Iмʼя"
+                      {...register("firstName", { required: true })}
                     />
+                    {firstNameError && (
+                      <span className="error-text">
+                        Заповніть, будь ласка, поле
+                      </span>
+                    )}
                   </label>
                 </div>
-                <div className="form__textarea">
+                <div
+                  className={
+                    secondNameError ? "form__input error" : "form__input"
+                  }
+                >
                   <label>
-                    <span>Декілька слів про вас *необовʼязково</span>
-                    <textarea {...register("textarea")}></textarea>
-                    <p>
+                    <span>Яке Ваше прізвище?*</span>
+                    <input
+                      placeholder="Прізвище"
+                      {...register("secondName", { required: true })}
+                    />
+                    {secondNameError && (
+                      <span className="error-text">
+                        Заповніть, будь ласка, поле
+                      </span>
+                    )}
+                  </label>
+                </div>
+                <div
+                  className={phoneError ? "form__input error" : "form__input"}
+                >
+                  <label>
+                    <span>Телефон*</span>
+                    <input
+                      placeholder="Телефон"
+                      {...register("phone", { required: true })}
+                    />
+                    {phoneError && (
+                      <span className="error-text">
+                        Заповніть, будь ласка, поле
+                      </span>
+                    )}
+                  </label>
+                </div>
+                <div className="form__input">
+                  <label>
+                    <span>Введіть Ваш телеграм нік</span>
+                    <input placeholder="Telegram" {...register("telegram")} />
+                  </label>
+                </div>
+                {withSubject && (
+                  <div
+                    className={
+                      subjectError ? "form__textarea error" : "form__textarea"
+                    }
+                  >
+                    <label>
+                      <span>Напишіть назву предмету*</span>
+                      <textarea
+                        {...register("subject", { required: true })}
+                      ></textarea>
+                      {subjectError && (
+                        <span className="error-text">
+                          Заповніть, будь ласка, поле
+                        </span>
+                      )}
+                      {/* <p>
                       Додайте, будь ласка свій телеграмчік для кращої
                       комунікації
-                    </p>
-                  </label>
-                </div>
+                    </p> */}
+                    </label>
+                  </div>
+                )}
+                {!withSubject && (
+                  <div className="form__textarea">
+                    <label>
+                      <span>Декілька слів про вас</span>
+                      <textarea {...register("about")}></textarea>
+                    </label>
+                  </div>
+                )}
               </div>
-              <ButtonFillArrow text="надіслати" type="submit" />
+              {isError && (
+                <p className="form__error">
+                  Не вдалося відправити форму. Спробуйте пізніше!
+                </p>
+              )}
+              <button
+                className="button__fill-arrow"
+                type="submit"
+                disabled={formState.isSubmitting}
+              >
+                <span>
+                  {formState.isSubmitting ? "відправка..." : "надіслати"}
+                </span>
+                <span>
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.7279 1.00059C14.7279 0.448309 14.2802 0.000593799 13.7279 0.000593799L4.72792 0.000593799C4.17564 0.000593799 3.72792 0.448309 3.72792 1.00059C3.72792 1.55288 4.17564 2.00059 4.72792 2.00059H12.7279V10.0006C12.7279 10.5529 13.1756 11.0006 13.7279 11.0006C14.2802 11.0006 14.7279 10.5529 14.7279 10.0006L14.7279 1.00059ZM1.70711 14.4356L14.435 1.7077L13.0208 0.293487L0.292893 13.0214L1.70711 14.4356Z"
+                      fill="#EAEAEA"
+                    />
+                  </svg>
+                </span>
+              </button>
             </form>
           </div>
         </div>
