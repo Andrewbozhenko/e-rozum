@@ -69,21 +69,11 @@ main {
   width: 100%;
   min-width: 32rem;
   min-height: 100%;
+  background-image: url(/img/ui/bg.png);
+  background-position: 50%;
+  background-size: auto;
+  background-repeat: repeat;
   background-color: var(--clr-default-900);
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    background-image: url(/img/ui/bg.png);
-    background-position: 50%;
-    background-size: auto;
-    background-repeat: repeat;
-  }
 
   &.no-overflow {
     overflow: initial;
