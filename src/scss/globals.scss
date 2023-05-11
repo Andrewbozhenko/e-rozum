@@ -69,6 +69,7 @@ main {
   width: 100%;
   min-width: 32rem;
   min-height: 100%;
+  background-color: var(--clr-default-900);
 
   &::before {
     content: "";
