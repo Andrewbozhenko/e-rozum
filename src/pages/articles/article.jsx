@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { LinkBack } from "@components/ui/link-back";
 
 export const Article = () => {
