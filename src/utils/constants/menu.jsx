@@ -1,12 +1,12 @@
 export const MENU = [
   {
     name: "Про нас",
-    href: "#",
+    href: "/#subjects",
     total: 0,
   },
   {
     name: "Усі предмети",
-    href: "#",
+    href: "/#subjects",
     total: 0,
   },
   {
@@ -16,12 +16,12 @@ export const MENU = [
   },
   {
     name: "Акції",
-    href: "#",
-    total: 4,
+    href: "/suggestions",
+    total: 3,
   },
   {
     name: "Вакансії",
-    href: "#",
+    href: "/?person=teacher#contacts",
     total: 0,
   },
   {

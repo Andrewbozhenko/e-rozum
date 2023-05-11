@@ -28,7 +28,7 @@ export const Teachers = () => {
   }, []);
 
   return (
-    <section className="teachers section">
+    <section id="teachers" className="teachers section">
       <div className="container">
         <div className="teachers__wrapper">
           <div className="teachers__text">

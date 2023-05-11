@@ -1,6 +1,9 @@
 import { ButtonEnroll } from "@components/ui";
+import { useRouter } from "next/router";
 
 export const Hero = () => {
+  // **Props
+  const { push } = useRouter();
   return (
     <section className="hero">
       <div className="container">
@@ -21,6 +24,7 @@ export const Hero = () => {
             <ButtonEnroll
               className="hero__button button__enroll"
               text="Записатися на урок в один клік"
+              onClick={() => push("/#contacts")}
             />
             <div className="hero__grade">
               <ul className="hero__users">

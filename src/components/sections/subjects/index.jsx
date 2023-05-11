@@ -78,7 +78,7 @@ export const Subjects = () => {
   }, [swiperInstance, swiperDestroyed]);
 
   return (
-    <section className="subjects section">
+    <section id="subjects" className="subjects section">
       <div className="container">
         <div className="subjects__wrapper">
           <div className="subjects__text">

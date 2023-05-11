@@ -1,6 +1,6 @@
-export const ButtonCircle = ({ text }) => {
+export const ButtonCircle = ({ text, onClick }) => {
   return (
-    <button className="button__circle">
+    <button className="button__circle" onClick={onClick}>
       {text}
       <span>
         <svg

@@ -20,7 +20,7 @@ export const Home = () => {
           <Reviews />
           <Price />
           <Articles />
-          <Form />
+          <Form withSubject />
         </main>
         <Footer />
       </div>
