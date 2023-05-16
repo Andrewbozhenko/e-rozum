@@ -1,8 +1,5 @@
 export const Teacher = (props) => {
-  const { subject } = props;
-  const { image } = props;
-  const { gpa } = props;
-  const { name } = props;
+  const { name, gpa, subject, image, text } = props;
 
   return (
     <div className="teachers__card swiper-slide">
@@ -22,18 +19,10 @@ export const Teacher = (props) => {
       <div className="teachers__about">
         <div className="teachers__about-top">
           <p className="teachers__about-title">Про викладача</p>
-          <div className="teachers__about-tag">@teacher</div>
         </div>
         <div className="teachers__about-text">
-          <p>
-            Lörem ipsum kontrakrosamma fanar intran, plus jur men dekajögada.
-            Besm kasamma och fapesam. Tiss stenodade, kvasijäjav der
-            helikoptermamma och spengar. Bödade hexaheten inte hexavaktiga
-            post-it-krig och bektig antroposkop. Sell relig håferat
-            reinfeldtare, pronomi. Temakonfirmation mivektiga. Saktigt plaktigt
-            liksom husm så transitflykting: prejäligen. Hypovirad jäfebel än
-            minesk digack. Tetraning metroform goskap bönådoskapet.
-          </p>
+          {typeof text === "string" && <p>{text}</p>}
+          {typeof text !== "string" && text?.map((t) => <p key={t}>{t}</p>)}
         </div>
       </div>
     </div>

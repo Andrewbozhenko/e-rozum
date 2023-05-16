@@ -82,6 +82,7 @@ export const Teachers = () => {
                   image={teacher.image}
                   gpa={teacher.gpa}
                   name={teacher.name}
+                  text={teacher.text}
                 />
               ))}
             </div>
