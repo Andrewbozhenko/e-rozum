@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 
 const Document = () => {
-  const GTM_ID = "GTM-XXXXXXX";
+  const GTM_ID = "GTM-MB4QLQ46";
 
   return (
     <Html lang="uk">
