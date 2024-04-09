@@ -10,7 +10,7 @@ export const PRICE = [
   {
     id: 1,
     priceTotal: 2560,
-    title: "Лекий старт",
+    title: "Легкий старт",
     lesson: 8,
     list: ["2 заняття або пара на тиждень", "8 академічних годин"],
     priceLesson: 320,
