@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useModal } from "@utils";
 
 export const PriceCard = (props) => {
   const { priceTotal } = props;
@@ -6,10 +6,11 @@ export const PriceCard = (props) => {
   const { lesson } = props;
   const { list } = props;
   const { priceLesson } = props;
+  const { toggleContactModal } = useModal();
 
   return (
     <li className="price__card">
-      <Link href="/#contacts">
+      <div href="/#contacts">
         <div className="price__card-total">{`${priceTotal} ₴`}</div>
         <h3 className="price__card-title">{title}</h3>
         <div className="price__card-lesson">{`${lesson} занять`}</div>
@@ -21,8 +22,10 @@ export const PriceCard = (props) => {
           ))}
         </ul>
         <div className="price__card-price">{`${priceLesson} ₴ / урок`}</div>
-        <div className="price__card-button">Спробувати</div>
-      </Link>
+        <button onClick={toggleContactModal} className="price__card-button">
+          Спробувати
+        </button>
+      </div>
     </li>
   );
 };

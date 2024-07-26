@@ -11,7 +11,7 @@ export const MENU = [
   },
   {
     name: "Ціни",
-    href: "#price",
+    href: "/#price",
     total: 0,
   },
   {

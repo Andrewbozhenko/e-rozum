@@ -1,6 +1,9 @@
-export const ButtonEnroll = ({ text, onClick }) => {
+export const ButtonEnroll = ({ text, onClick, className }) => {
   return (
-    <button className="button__enroll" onClick={onClick}>
+    <button
+      className={`button__enroll ${className ? className : ""}`}
+      onClick={onClick}
+    >
       {text}
       <span></span>
     </button>
