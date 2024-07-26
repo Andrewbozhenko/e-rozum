@@ -47,7 +47,8 @@ body {
   letter-spacing: 0.012em;
   color: var(--clr-default-200);
 
-  &.lock {
+  &.lock,
+  &:has(.modal--opened) {
     overflow: hidden;
     width: 100%;
     height: 100vh;
@@ -117,6 +118,7 @@ main {
 @import "./components/sections/articles/articles";
 @import "./components/sections/price/price";
 @import "./components/sections/form/form";
+@import "./components/sections/contact-modal-form/contact-modal-form";
 @import "./components/sections/first/first";
 @import "./components/sections/article/article";
 @import "./components/sections/error/error";
@@ -126,6 +128,7 @@ main {
 // Components - Sections
 
 // Components - Common
+@import "./components/common/modal.scss";
 // Components - Common
 
 // Components - Pages

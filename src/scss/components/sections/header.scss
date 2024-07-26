@@ -14,6 +14,41 @@
     gap: 3rem;
   }
 
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    @media (max-width: em(1100)) {
+      margin-left: auto;
+    }
+
+    @media (max-width: em(575)) {
+      display: none;
+    }
+
+    &-list {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+
+      li {
+        svg {
+          fill: var(--clr-default-200);
+          stroke: var(--clr-default-200);
+        }
+
+        &:hover {
+          svg {
+            fill: var(--clr-default-400);
+            stroke: var(--clr-default-400);
+            transition: stroke var(--transition);
+          }
+        }
+      }
+    }
+  }
+
   &__button {
     display: flex;
     align-items: center;
@@ -26,14 +61,6 @@
     font-size: 1.4rem;
     color: var(--clr-default-200);
     transition: border var(--transition);
-
-    @media (max-width: em(992)) {
-      margin-left: auto;
-    }
-
-    @media (max-width: em(575)) {
-      display: none;
-    }
 
     &:hover {
       border: 0.2rem solid var(--clr-default-400);

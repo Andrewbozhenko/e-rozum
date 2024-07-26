@@ -1,8 +1,9 @@
-import { ButtonFillArrow } from "@components/ui/button-fillArrow";
-import Link from "next/link";
+import { useModal } from "@utils";
 
 export const SuggestionsCard = (props) => {
   const { title, description, image } = props;
+
+  const { toggleContactModal } = useModal();
 
   return (
     <li className="suggestions__card">
@@ -15,7 +16,7 @@ export const SuggestionsCard = (props) => {
       <div className="suggestions__card-image">
         <img src={image} alt={title} />
       </div>
-      <Link href="/suggestions#contacts" className="button__fill-arrow">
+      <button onClick={toggleContactModal} className="button__fill-arrow">
         <span>оформити</span>
         <span>
           <svg
@@ -32,7 +33,7 @@ export const SuggestionsCard = (props) => {
             />
           </svg>
         </span>
-      </Link>
+      </button>
     </li>
   );
 };

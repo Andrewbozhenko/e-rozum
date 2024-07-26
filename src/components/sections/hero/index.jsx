@@ -1,9 +1,10 @@
 import { ButtonEnroll } from "@components/ui";
-import { useRouter } from "next/router";
+import { useModal } from "@utils";
 
 export const Hero = () => {
   // **Props
-  const { push } = useRouter();
+  const { toggleContactModal } = useModal();
+
   return (
     <section className="hero">
       <div className="container">
@@ -22,9 +23,9 @@ export const Hero = () => {
               </div>
             </div>
             <ButtonEnroll
-              className="hero__button button__enroll"
-              text="Записатися на урок в один клік"
-              onClick={() => push("/#contacts")}
+              className="hero__button"
+              text="Отримати безкоштовну консультацію"
+              onClick={() => toggleContactModal()}
             />
             <div className="hero__grade">
               <ul className="hero__users">
