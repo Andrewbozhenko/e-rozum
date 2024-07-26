@@ -1,9 +1,11 @@
+import { useModal } from "@utils";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export const ContactModalForm = (props) => {
   const { withSubject } = props;
 
+  const { toggleContactModal } = useModal();
   const { register, handleSubmit, watch, reset, setValue, formState } = useForm(
     {
       defaultValues: {
@@ -47,7 +49,7 @@ export const ContactModalForm = (props) => {
 
       reset();
 
-      push("/success");
+      toggleContactModal();
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);
