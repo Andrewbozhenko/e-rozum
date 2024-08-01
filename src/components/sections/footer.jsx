@@ -184,9 +184,14 @@ export const Footer = () => {
             <div className="footer__develop">
               <p className="footer__develop-text">Developed and designed by:</p>
               <div className="footer__develop-images">
-                <div className="footer__develop-image">
+                <a
+                  href="https://bozh.team"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer__develop-image"
+                >
                   <img src="img/ui/bozhenko.svg" alt="Bozhenko team" />
-                </div>
+                </a>
                 <div className="footer__develop-image">
                   <img src="img/ui/separate.svg" aria-hidden="true" />
                 </div>
