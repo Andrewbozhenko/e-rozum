@@ -82,7 +82,7 @@ export const Form = (props) => {
           <div className="form__content">
             <h2 className="form__title-inner title">Давайте розпочнемо</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="form__body">
-              <div className="form__radio">
+              {/* <div className="form__radio">
                 <button
                   type="button"
                   className={
@@ -105,7 +105,7 @@ export const Form = (props) => {
                 >
                   вчитель
                 </button>
-              </div>
+              </div> */}
               <div className="form__inner">
                 <div
                   className={
