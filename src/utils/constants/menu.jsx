@@ -19,11 +19,11 @@ export const MENU = [
     href: "/suggestions",
     total: 3,
   },
-  {
-    name: "Вакансії",
-    href: "/?person=teacher#contacts",
-    total: 0,
-  },
+  // {
+  //   name: "Вакансії",
+  //   href: "/?person=teacher#contacts",
+  //   total: 0,
+  // },
   {
     name: "Cтатті",
     href: "/articles",
