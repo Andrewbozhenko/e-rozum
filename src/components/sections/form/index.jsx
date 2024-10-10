@@ -94,6 +94,7 @@ export const Form = (props) => {
                 >
                   студент
                 </button>
+                
                 <button
                   type="button"
                   className={
