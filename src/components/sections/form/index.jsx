@@ -1,6 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import {
+  formatUkrainianPhone,
+  UKRAINIAN_PHONE_PATTERN,
+} from "@utils/format-phone";
 
 export const Form = (props) => {
   const { withSubject } = props;
@@ -23,6 +27,15 @@ export const Form = (props) => {
   const firstNameError = formState.errors?.firstName;
   const phoneError = formState.errors?.phone;
   const subjectError = formState.errors?.subject;
+
+  const phoneField = register("phone", {
+    required: true,
+    pattern: UKRAINIAN_PHONE_PATTERN,
+  });
+  const handlePhoneChange = (e) => {
+    e.target.value = formatUkrainianPhone(e.target.value);
+    phoneField.onChange(e);
+  };
 
   // **Local state
   const [isError, setIsError] = useState(false);
@@ -78,10 +91,10 @@ export const Form = (props) => {
             </div>
           </div>
           <div className="form__content">
-            <h2 className="form__title-inner title">
+            <h3 className="form__title-inner">
               Щоб отримати безкоштовний урок, залиште ваші контактні дані і ми
               з вами зв’яжемось
-            </h2>
+            </h3>
             <form onSubmit={handleSubmit(onSubmit)} className="form__body">
               {/* <div className="form__radio">
                 <button
@@ -127,13 +140,19 @@ export const Form = (props) => {
                   </label>
                 </div>
                 <div
-                  className={phoneError ? "form__input error" : "form__input"}
+                  className={
+                    phoneError
+                      ? "form__input form__input--full error"
+                      : "form__input form__input--full"
+                  }
                 >
                   <label>
                     <span>Телефон*</span>
                     <input
-                      placeholder="Телефон"
-                      {...register("phone", { required: true })}
+                      type="tel"
+                      placeholder="+380 (__) ___ __ __"
+                      {...phoneField}
+                      onChange={handlePhoneChange}
                     />
                     {phoneError && (
                       <span className="error-text">

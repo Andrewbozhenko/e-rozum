@@ -1,6 +1,10 @@
 import { useModal } from "@utils";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import {
+  formatUkrainianPhone,
+  UKRAINIAN_PHONE_PATTERN,
+} from "@utils/format-phone";
 
 export const ContactModalForm = (props) => {
   const { withSubject } = props;
@@ -21,6 +25,15 @@ export const ContactModalForm = (props) => {
   const firstNameError = formState.errors?.firstName;
   const phoneError = formState.errors?.phone;
   const subjectError = formState.errors?.subject;
+
+  const phoneField = register("phone", {
+    required: true,
+    pattern: UKRAINIAN_PHONE_PATTERN,
+  });
+  const handlePhoneChange = (e) => {
+    e.target.value = formatUkrainianPhone(e.target.value);
+    phoneField.onChange(e);
+  };
 
   // **Local state
   const [isError, setIsError] = useState(false);
@@ -96,8 +109,10 @@ export const ContactModalForm = (props) => {
             <label>
               <span>Телефон*</span>
               <input
-                placeholder="Телефон"
-                {...register("phone", { required: true })}
+                type="tel"
+                placeholder="+380 (__) ___ __ __"
+                {...phoneField}
+                onChange={handlePhoneChange}
               />
               {phoneError && (
                 <span className="error-text">Заповніть, будь ласка, поле</span>

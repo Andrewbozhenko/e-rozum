@@ -46,6 +46,9 @@
   }
 
   &__title-inner {
+    font-weight: 300;
+    font-size: fluid(2.4rem, 1.8rem);
+    line-height: 140%;
     text-align: center;
 
     @media (max-width: em(575)) {
@@ -112,6 +115,10 @@
   }
 
   &__input {
+    &--full {
+      grid-column: 1 / 3;
+    }
+
     label {
       display: flex;
       flex-direction: column;

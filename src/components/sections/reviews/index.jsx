@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper } from "swiper";
 import { ReviewCard } from "@components/cards/review-card";
+import { ReviewScreenshotCard } from "@components/cards/review-screenshot-card";
 import { REVIEWS } from "@utils";
 
 export const Reviews = () => {
@@ -8,8 +9,10 @@ export const Reviews = () => {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [swiperDestroyed, setSwiperDestroyed] = useState(false);
 
+  const ratedReviews = REVIEWS.filter((review) => typeof review.rating === "number");
   const averageRating =
-    REVIEWS.reduce((acc, curr) => acc + curr.rating, 0) / totalReviews;
+    ratedReviews.reduce((acc, curr) => acc + curr.rating, 0) /
+    ratedReviews.length;
 
   const fullStars = Math.floor(averageRating);
   const hasHalfStar = averageRating - fullStars >= 0.5;
@@ -90,16 +93,25 @@ export const Reviews = () => {
                 !swiperDestroyed && "swiper-wrapper"
               }`}
             >
-              {REVIEWS.map((review) => (
-                <ReviewCard
-                  swiperDestroyed={swiperDestroyed}
-                  key={review.id}
-                  rating={review.rating}
-                  review={review.review}
-                  author={review.author}
-                  status={review.status}
-                />
-              ))}
+              {REVIEWS.map((review) =>
+                review.type === "screenshot" ? (
+                  <ReviewScreenshotCard
+                    swiperDestroyed={swiperDestroyed}
+                    key={review.id}
+                    image={review.image}
+                    alt={review.alt}
+                  />
+                ) : (
+                  <ReviewCard
+                    swiperDestroyed={swiperDestroyed}
+                    key={review.id}
+                    rating={review.rating}
+                    review={review.review}
+                    author={review.author}
+                    status={review.status}
+                  />
+                )
+              )}
             </div>
           </div>
         </div>
