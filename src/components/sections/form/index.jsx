@@ -139,6 +139,12 @@ export const Form = (props) => {
                     )}
                   </label>
                 </div>
+                <div className="form__input">
+                  <label>
+                    <span>Введіть Ваш телеграм нік</span>
+                    <input placeholder="Telegram" {...register("telegram")} />
+                  </label>
+                </div>
                 <div
                   className={
                     phoneError
@@ -159,12 +165,6 @@ export const Form = (props) => {
                         Заповніть, будь ласка, поле
                       </span>
                     )}
-                  </label>
-                </div>
-                <div className="form__input">
-                  <label>
-                    <span>Введіть Ваш телеграм нік</span>
-                    <input placeholder="Telegram" {...register("telegram")} />
                   </label>
                 </div>
                 {withSubject && (

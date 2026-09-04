@@ -99,11 +99,17 @@ export const ContactModalForm = (props) => {
               )}
             </label>
           </div>
+          <div className="contact-modal-form__input">
+            <label>
+              <span>Введіть Ваш телеграм нік</span>
+              <input placeholder="Telegram" {...register("telegram")} />
+            </label>
+          </div>
           <div
             className={
               phoneError
-                ? "contact-modal-form__input error"
-                : "contact-modal-form__input"
+                ? "contact-modal-form__input contact-modal-form__input--full error"
+                : "contact-modal-form__input contact-modal-form__input--full"
             }
           >
             <label>
@@ -117,12 +123,6 @@ export const ContactModalForm = (props) => {
               {phoneError && (
                 <span className="error-text">Заповніть, будь ласка, поле</span>
               )}
-            </label>
-          </div>
-          <div className="contact-modal-form__input">
-            <label>
-              <span>Введіть Ваш телеграм нік</span>
-              <input placeholder="Telegram" {...register("telegram")} />
             </label>
           </div>
           {withSubject && (

@@ -50,8 +50,10 @@
     font-size: fluid(2.4rem, 1.8rem);
     line-height: 140%;
     text-align: center;
+    max-width: 55rem;
 
     @media (max-width: em(575)) {
+      max-width: initial;
       text-align: start;
     }
   }
