@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Swiper } from "swiper";
 import { ArticleCard } from "@components/cards/article-card";
 import { ButtonFillArrow } from "@components/ui/button-fillArrow";
+import { ButtonEnroll } from "@components/ui";
 import { ARTICLES } from "@utils";
 import { useRouter } from "next/router";
+import { useModal } from "@utils";
 import Link from "next/link";
 
 export const Articles = () => {
   const { push } = useRouter();
+  const { toggleContactModal } = useModal();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [swiperDestroyed, setSwiperDestroyed] = useState(false);
 
@@ -54,6 +57,12 @@ export const Articles = () => {
   return (
     <section id="articles" className="articles section">
       <div className="container">
+        <div className="articles__cta">
+          <ButtonEnroll
+            text="Спробувати безкоштовний урок"
+            onClick={() => toggleContactModal()}
+          />
+        </div>
         <div className="articles__wrapper">
           <div className="articles__info">
             <h2 className="articles__title title">Статі</h2>

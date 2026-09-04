@@ -12,7 +12,6 @@ export const Form = (props) => {
     {
       defaultValues: {
         firstName: "",
-        secondName: "",
         phone: "",
         telegram: "",
         subject: "",
@@ -22,7 +21,6 @@ export const Form = (props) => {
   );
 
   const firstNameError = formState.errors?.firstName;
-  const secondNameError = formState.errors?.secondName;
   const phoneError = formState.errors?.phone;
   const subjectError = formState.errors?.subject;
 
@@ -80,7 +78,10 @@ export const Form = (props) => {
             </div>
           </div>
           <div className="form__content">
-            <h2 className="form__title-inner title">Давайте розпочнемо</h2>
+            <h2 className="form__title-inner title">
+              Щоб отримати безкоштовний урок, залиште ваші контактні дані і ми
+              з вами зв’яжемось
+            </h2>
             <form onSubmit={handleSubmit(onSubmit)} className="form__body">
               {/* <div className="form__radio">
                 <button
@@ -119,24 +120,6 @@ export const Form = (props) => {
                       {...register("firstName", { required: true })}
                     />
                     {firstNameError && (
-                      <span className="error-text">
-                        Заповніть, будь ласка, поле
-                      </span>
-                    )}
-                  </label>
-                </div>
-                <div
-                  className={
-                    secondNameError ? "form__input error" : "form__input"
-                  }
-                >
-                  <label>
-                    <span>Яке Ваше прізвище?*</span>
-                    <input
-                      placeholder="Прізвище"
-                      {...register("secondName", { required: true })}
-                    />
-                    {secondNameError && (
                       <span className="error-text">
                         Заповніть, будь ласка, поле
                       </span>

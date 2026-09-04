@@ -23,7 +23,7 @@ export const Hero = () => {
             </div>
             <ButtonEnroll
               className="hero__button"
-              text="Отримати безкоштовну консультацію"
+              text="Записатись на безкоштовний урок"
               onClick={() => toggleContactModal()}
             />
             <div className="hero__grade">

@@ -10,7 +10,6 @@ export const ContactModalForm = (props) => {
     {
       defaultValues: {
         firstName: "",
-        secondName: "",
         phone: "",
         telegram: "",
         subject: "",
@@ -20,7 +19,6 @@ export const ContactModalForm = (props) => {
   );
 
   const firstNameError = formState.errors?.firstName;
-  const secondNameError = formState.errors?.secondName;
   const phoneError = formState.errors?.phone;
   const subjectError = formState.errors?.subject;
 
@@ -60,11 +58,10 @@ export const ContactModalForm = (props) => {
   return (
     <div className="contact-modal-form">
       <div className="contact-modal-form__description">
-        <h2 className="contact-modal-form__title title">Давайте розпочнемо</h2>
-        <p>
-          Залиште свої контакти і менеджер зв‘яжеться з Вами для уточнення
-          деталей протягом доби
-        </p>
+        <h2 className="contact-modal-form__title title">
+          Щоб отримати безкоштовний урок, залиште ваші контактні дані і ми з
+          вами зв’яжемось
+        </h2>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -85,24 +82,6 @@ export const ContactModalForm = (props) => {
                 {...register("firstName", { required: true })}
               />
               {firstNameError && (
-                <span className="error-text">Заповніть, будь ласка, поле</span>
-              )}
-            </label>
-          </div>
-          <div
-            className={
-              secondNameError
-                ? "contact-modal-form__input error"
-                : "contact-modal-form__input"
-            }
-          >
-            <label>
-              <span>Яке Ваше прізвище?*</span>
-              <input
-                placeholder="Прізвище"
-                {...register("secondName", { required: true })}
-              />
-              {secondNameError && (
                 <span className="error-text">Заповніть, будь ласка, поле</span>
               )}
             </label>

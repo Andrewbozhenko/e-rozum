@@ -1,4 +1,14 @@
 .articles {
+  &__cta {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6rem;
+
+    @media (max-width: em(767)) {
+      margin-bottom: 3rem;
+    }
+  }
+
   &__wrapper {
     display: flex;
     justify-content: space-between;
