@@ -1,10 +1,8 @@
 import { useModal } from "@utils";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  formatUkrainianPhone,
-  UKRAINIAN_PHONE_PATTERN,
-} from "@utils/format-phone";
+import { validatePhone } from "@utils/phone";
+import { usePhoneMask } from "@utils/use-phone-mask";
 
 export const ContactModalForm = (props) => {
   const { withSubject } = props;
@@ -26,14 +24,8 @@ export const ContactModalForm = (props) => {
   const phoneError = formState.errors?.phone;
   const subjectError = formState.errors?.subject;
 
-  const phoneField = register("phone", {
-    required: true,
-    pattern: UKRAINIAN_PHONE_PATTERN,
-  });
-  const handlePhoneChange = (e) => {
-    e.target.value = formatUkrainianPhone(e.target.value);
-    phoneField.onChange(e);
-  };
+  const phoneField = register("phone", { validate: validatePhone });
+  const { inputRef: phoneMaskRef, resetMask } = usePhoneMask(setValue, "phone");
 
   // **Local state
   const [isError, setIsError] = useState(false);
@@ -59,6 +51,7 @@ export const ContactModalForm = (props) => {
       }
 
       reset();
+      resetMask();
 
       toggleContactModal();
     } catch (err) {
@@ -116,12 +109,15 @@ export const ContactModalForm = (props) => {
               <span>Телефон*</span>
               <input
                 type="tel"
-                placeholder="+380 (__) ___ __ __"
-                {...phoneField}
-                onChange={handlePhoneChange}
+                name={phoneField.name}
+                onBlur={phoneField.onBlur}
+                ref={(el) => {
+                  phoneField.ref(el);
+                  phoneMaskRef.current = el;
+                }}
               />
               {phoneError && (
-                <span className="error-text">Заповніть, будь ласка, поле</span>
+                <span className="error-text">{phoneError.message}</span>
               )}
             </label>
           </div>

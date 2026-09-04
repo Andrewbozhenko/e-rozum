@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const ReviewScreenshotCard = (props) => {
-  const { image, alt, swiperDestroyed } = props;
+  const { image, alt } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -9,19 +9,14 @@ export const ReviewScreenshotCard = (props) => {
     <>
       <button
         type="button"
-        className={`reviews__card reviews__card-screenshot ${
-          !swiperDestroyed && "swiper-slide"
-        }`}
+        className="reviews__card-screenshot"
         onClick={() => setIsOpen(true)}
       >
         <img src={image} alt={alt} loading="lazy" />
       </button>
 
       {isOpen && (
-        <div
-          className="reviews__lightbox"
-          onClick={() => setIsOpen(false)}
-        >
+        <div className="reviews__lightbox" onClick={() => setIsOpen(false)}>
           <button
             type="button"
             className="reviews__lightbox-close"
