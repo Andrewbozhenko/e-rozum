@@ -19,7 +19,7 @@ export const Reviews = () => {
             </div>
             <div className="reviews__score">
               <div className="reviews__card-circle">{FULL_RATING_CIRCLES}</div>
-              <p className="reviews__score-total">3 відгук</p>
+              <p className="reviews__score-total">1 відгук</p>
             </div>
           </div>
           {screenshotReview && (
