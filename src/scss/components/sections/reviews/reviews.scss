@@ -9,6 +9,12 @@
     }
   }
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
+
   &__text {
     display: flex;
     flex-direction: column;
@@ -20,16 +26,41 @@
     font-size: fluid(4rem, 2.2rem);
   }
 
+  &__score {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__score-total {
+    color: var(--clr-default-300);
+  }
+
+  &__card-circle {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  &__circle {
+    display: none;
+    border-radius: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    background-color: var(--clr-default-400);
+
+    &--active {
+      display: block;
+    }
+  }
+
   &__card-screenshot {
     display: block;
     align-self: flex-start;
     cursor: pointer;
     border: none;
-    border-top: 0.3rem solid var(--clr-default-300);
     padding: 0;
-    padding-top: 2rem;
     width: 100%;
-    max-width: 50rem;
+    max-width: 60rem;
     background: none;
 
     img {
