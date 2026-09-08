@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { validatePhone } from "@utils/phone";
+import { usePhoneMask } from "@utils/use-phone-mask";
 
 export const Form = (props) => {
   const { withSubject } = props;
@@ -12,7 +14,6 @@ export const Form = (props) => {
     {
       defaultValues: {
         firstName: "",
-        secondName: "",
         phone: "",
         telegram: "",
         subject: "",
@@ -22,9 +23,11 @@ export const Form = (props) => {
   );
 
   const firstNameError = formState.errors?.firstName;
-  const secondNameError = formState.errors?.secondName;
   const phoneError = formState.errors?.phone;
   const subjectError = formState.errors?.subject;
+
+  const phoneField = register("phone", { validate: validatePhone });
+  const { inputRef: phoneMaskRef, resetMask } = usePhoneMask(setValue, "phone");
 
   // **Local state
   const [isError, setIsError] = useState(false);
@@ -50,6 +53,7 @@ export const Form = (props) => {
       }
 
       reset();
+      resetMask();
 
       push("/success");
     } catch (err) {
@@ -80,7 +84,10 @@ export const Form = (props) => {
             </div>
           </div>
           <div className="form__content">
-            <h2 className="form__title-inner title">Давайте розпочнемо</h2>
+            <h3 className="form__title-inner">
+              Щоб отримати безкоштовний урок, залиште ваші контактні дані і ми
+              з вами зв’яжемось
+            </h3>
             <form onSubmit={handleSubmit(onSubmit)} className="form__body">
               {/* <div className="form__radio">
                 <button
@@ -125,44 +132,35 @@ export const Form = (props) => {
                     )}
                   </label>
                 </div>
-                <div
-                  className={
-                    secondNameError ? "form__input error" : "form__input"
-                  }
-                >
-                  <label>
-                    <span>Яке Ваше прізвище?*</span>
-                    <input
-                      placeholder="Прізвище"
-                      {...register("secondName", { required: true })}
-                    />
-                    {secondNameError && (
-                      <span className="error-text">
-                        Заповніть, будь ласка, поле
-                      </span>
-                    )}
-                  </label>
-                </div>
-                <div
-                  className={phoneError ? "form__input error" : "form__input"}
-                >
-                  <label>
-                    <span>Телефон*</span>
-                    <input
-                      placeholder="Телефон"
-                      {...register("phone", { required: true })}
-                    />
-                    {phoneError && (
-                      <span className="error-text">
-                        Заповніть, будь ласка, поле
-                      </span>
-                    )}
-                  </label>
-                </div>
                 <div className="form__input">
                   <label>
                     <span>Введіть Ваш телеграм нік</span>
                     <input placeholder="Telegram" {...register("telegram")} />
+                  </label>
+                </div>
+                <div
+                  className={
+                    phoneError
+                      ? "form__input form__input--full error"
+                      : "form__input form__input--full"
+                  }
+                >
+                  <label>
+                    <span>Телефон*</span>
+                    <input
+                      type="tel"
+                      name={phoneField.name}
+                      onBlur={phoneField.onBlur}
+                      ref={(el) => {
+                        phoneField.ref(el);
+                        phoneMaskRef.current = el;
+                      }}
+                    />
+                    {phoneError && (
+                      <span className="error-text">
+                        {phoneError.message}
+                      </span>
+                    )}
                   </label>
                 </div>
                 {withSubject && (

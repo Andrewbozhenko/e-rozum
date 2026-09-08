@@ -40,6 +40,10 @@
   }
 
   &__input {
+    &--full {
+      grid-column: 1 / 3;
+    }
+
     label {
       display: flex;
       flex-direction: column;
