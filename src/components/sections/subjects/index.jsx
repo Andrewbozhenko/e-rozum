@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { SubjectCard } from "@components/cards";
-import { SUBJECTS } from "@utils";
+import { SUBJECTS, useModal } from "@utils";
+import { ButtonEnroll } from "@components/ui";
 import { Swiper, Pagination } from "swiper";
 
 export const Subjects = () => {
+  const { toggleContactModal } = useModal();
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [swiperDestroyed, setSwiperDestroyed] = useState(false);
 
@@ -108,6 +110,12 @@ export const Subjects = () => {
                 />
               ))}
             </div>
+          </div>
+          <div className="subjects__cta">
+            <ButtonEnroll
+              text="Записатися на пробний урок"
+              onClick={() => toggleContactModal()}
+            />
           </div>
         </div>
       </div>

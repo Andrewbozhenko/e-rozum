@@ -1,4 +1,4 @@
-import { useModal } from "@utils";
+import { SUBJECTS, useModal } from "@utils";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { validatePhone } from "@utils/phone";
@@ -121,35 +121,36 @@ export const ContactModalForm = (props) => {
               )}
             </label>
           </div>
-          {withSubject && (
-            <div
-              className={
-                subjectError
-                  ? "contact-modal-form__textarea error"
-                  : "contact-modal-form__textarea"
-              }
-            >
-              <label>
-                <span>Напишіть назву предмету*</span>
-                <textarea
-                  {...register("subject", { required: true })}
-                ></textarea>
-                {subjectError && (
-                  <span className="error-text">
-                    Заповніть, будь ласка, поле
-                  </span>
-                )}
-              </label>
-            </div>
-          )}
-          {!withSubject && (
-            <div className="contact-modal-form__textarea">
-              <label>
-                <span>Інші побажання</span>
-                <textarea {...register("about")}></textarea>
-              </label>
-            </div>
-          )}
+          <div
+            className={
+              subjectError
+                ? "contact-modal-form__input contact-modal-form__input--full error"
+                : "contact-modal-form__input contact-modal-form__input--full"
+            }
+          >
+            <label>
+              <span>Оберіть предмет*</span>
+              <select {...register("subject", { required: true })}>
+                <option value="" disabled>
+                  Предмет
+                </option>
+                {SUBJECTS.map((item) => (
+                  <option key={item.id} value={item.title}>
+                    {item.title}
+                  </option>
+                ))}
+              </select>
+              {subjectError && (
+                <span className="error-text">Оберіть, будь ласка, предмет</span>
+              )}
+            </label>
+          </div>
+          <div className="contact-modal-form__textarea">
+            <label>
+              <span>Інші побажання</span>
+              <textarea {...register("about")}></textarea>
+            </label>
+          </div>
         </div>
         {isError && (
           <p className="contact-modal-form__error">

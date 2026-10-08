@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { SUBJECTS } from "@utils";
 import { validatePhone } from "@utils/phone";
 import { usePhoneMask } from "@utils/use-phone-mask";
 
@@ -163,37 +164,38 @@ export const Form = (props) => {
                     )}
                   </label>
                 </div>
-                {withSubject && (
-                  <div
-                    className={
-                      subjectError ? "form__textarea error" : "form__textarea"
-                    }
-                  >
-                    <label>
-                      <span>Напишіть назву предмету*</span>
-                      <textarea
-                        {...register("subject", { required: true })}
-                      ></textarea>
-                      {subjectError && (
-                        <span className="error-text">
-                          Заповніть, будь ласка, поле
-                        </span>
-                      )}
-                      {/* <p>
-                      Додайте, будь ласка свій телеграмчік для кращої
-                      комунікації
-                    </p> */}
-                    </label>
-                  </div>
-                )}
-                {!withSubject && (
-                  <div className="form__textarea">
-                    <label>
-                      <span>Декілька слів про вас</span>
-                      <textarea {...register("about")}></textarea>
-                    </label>
-                  </div>
-                )}
+                <div
+                  className={
+                    subjectError
+                      ? "form__input form__input--full error"
+                      : "form__input form__input--full"
+                  }
+                >
+                  <label>
+                    <span>Оберіть предмет*</span>
+                    <select {...register("subject", { required: true })}>
+                      <option value="" disabled>
+                        Предмет
+                      </option>
+                      {SUBJECTS.map((item) => (
+                        <option key={item.id} value={item.title}>
+                          {item.title}
+                        </option>
+                      ))}
+                    </select>
+                    {subjectError && (
+                      <span className="error-text">
+                        Оберіть, будь ласка, предмет
+                      </span>
+                    )}
+                  </label>
+                </div>
+                <div className="form__textarea">
+                  <label>
+                    <span>Інші побажання</span>
+                    <textarea {...register("about")}></textarea>
+                  </label>
+                </div>
               </div>
               {isError && (
                 <p className="form__error">

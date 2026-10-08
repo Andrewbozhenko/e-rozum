@@ -31,7 +31,7 @@ export const SUBJECTS = [
   },
   {
     id: 5,
-    title: "ФІзика",
+    title: "Фізика",
     description: " “Існує лише те, що можна виміряти”. ",
     image: "img/media/item6.png",
   },
