@@ -12,19 +12,18 @@ export const Hero = () => {
           <div className="hero__content">
             <div className="hero__text">
               <h1 className="hero__title">
-                <span>єРозум -</span> освітня платформа, яка підготує до уроків
-                та НМТ.
+                Підготовка до НМТ на 190+ балів без стресу та зубріння
               </h1>
               <div className="hero__description">
                 <p>
-                  Вже три роки ми впевнено та професійно допомагаємо учням
-                  України отримувати найвищі бали та вступати до ВНЗ.
+                  Працюємо більше 5 років — впевнено та професійно допомагаємо
+                  учням України отримувати найвищі бали та вступати до ВНЗ.
                 </p>
               </div>
             </div>
             <ButtonEnroll
               className="hero__button"
-              text="Отримати безкоштовну консультацію"
+              text="Записатись на безкоштовний урок"
               onClick={() => toggleContactModal()}
             />
             <div className="hero__grade">

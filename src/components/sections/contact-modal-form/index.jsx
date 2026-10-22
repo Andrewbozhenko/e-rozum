@@ -1,6 +1,8 @@
-import { useModal } from "@utils";
+import { SUBJECTS, useModal } from "@utils";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { validatePhone } from "@utils/phone";
+import { usePhoneMask } from "@utils/use-phone-mask";
 
 export const ContactModalForm = (props) => {
   const { withSubject } = props;
@@ -10,7 +12,6 @@ export const ContactModalForm = (props) => {
     {
       defaultValues: {
         firstName: "",
-        secondName: "",
         phone: "",
         telegram: "",
         subject: "",
@@ -20,9 +21,11 @@ export const ContactModalForm = (props) => {
   );
 
   const firstNameError = formState.errors?.firstName;
-  const secondNameError = formState.errors?.secondName;
   const phoneError = formState.errors?.phone;
   const subjectError = formState.errors?.subject;
+
+  const phoneField = register("phone", { validate: validatePhone });
+  const { inputRef: phoneMaskRef, resetMask } = usePhoneMask(setValue, "phone");
 
   // **Local state
   const [isError, setIsError] = useState(false);
@@ -48,6 +51,7 @@ export const ContactModalForm = (props) => {
       }
 
       reset();
+      resetMask();
 
       toggleContactModal();
     } catch (err) {
@@ -60,11 +64,10 @@ export const ContactModalForm = (props) => {
   return (
     <div className="contact-modal-form">
       <div className="contact-modal-form__description">
-        <h2 className="contact-modal-form__title title">Давайте розпочнемо</h2>
-        <p>
-          Залиште свої контакти і менеджер зв‘яжеться з Вами для уточнення
-          деталей протягом доби
-        </p>
+        <h2 className="contact-modal-form__title title">
+          Щоб отримати безкоштовний урок, залиште ваші контактні дані і ми з
+          вами зв’яжемось
+        </h2>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -89,77 +92,65 @@ export const ContactModalForm = (props) => {
               )}
             </label>
           </div>
-          <div
-            className={
-              secondNameError
-                ? "contact-modal-form__input error"
-                : "contact-modal-form__input"
-            }
-          >
-            <label>
-              <span>Яке Ваше прізвище?*</span>
-              <input
-                placeholder="Прізвище"
-                {...register("secondName", { required: true })}
-              />
-              {secondNameError && (
-                <span className="error-text">Заповніть, будь ласка, поле</span>
-              )}
-            </label>
-          </div>
-          <div
-            className={
-              phoneError
-                ? "contact-modal-form__input error"
-                : "contact-modal-form__input"
-            }
-          >
-            <label>
-              <span>Телефон*</span>
-              <input
-                placeholder="Телефон"
-                {...register("phone", { required: true })}
-              />
-              {phoneError && (
-                <span className="error-text">Заповніть, будь ласка, поле</span>
-              )}
-            </label>
-          </div>
           <div className="contact-modal-form__input">
             <label>
               <span>Введіть Ваш телеграм нік</span>
               <input placeholder="Telegram" {...register("telegram")} />
             </label>
           </div>
-          {withSubject && (
-            <div
-              className={
-                subjectError
-                  ? "contact-modal-form__textarea error"
-                  : "contact-modal-form__textarea"
-              }
-            >
-              <label>
-                <span>Напишіть назву предмету*</span>
-                <textarea
-                  {...register("subject", { required: true })}
-                ></textarea>
-                {subjectError && (
-                  <span className="error-text">
-                    Заповніть, будь ласка, поле
-                  </span>
-                )}
-              </label>
-            </div>
-          )}
-          {!withSubject && (
-            <div className="contact-modal-form__textarea">
-              <label>
-                <span>Інші побажання</span>
-                <textarea {...register("about")}></textarea>
-              </label>
-            </div>
-          )}
+          <div
+            className={
+              phoneError
+                ? "contact-modal-form__input contact-modal-form__input--full error"
+                : "contact-modal-form__input contact-modal-form__input--full"
+            }
+          >
+            <label>
+              <span>Телефон*</span>
+              <input
+                type="tel"
+                name={phoneField.name}
+                onBlur={phoneField.onBlur}
+                ref={(el) => {
+                  phoneField.ref(el);
+                  phoneMaskRef.current = el;
+                }}
+              />
+              {phoneError && (
+                <span className="error-text">{phoneError.message}</span>
+              )}
+            </label>
+          </div>
+          <div
+            className={
+              subjectError
+                ? "contact-modal-form__input contact-modal-form__input--full error"
+                : "contact-modal-form__input contact-modal-form__input--full"
+            }
+          >
+            <label>
+              <span>Оберіть предмет*</span>
+              <select {...register("subject", { required: true })}>
+                <option value="" disabled>
+                  Предмет
+                </option>
+                {SUBJECTS.map((item) => (
+                  <option key={item.id} value={item.title}>
+                    {item.title}
+                  </option>
+                ))}
+              </select>
+              {subjectError && (
+                <span className="error-text">Оберіть, будь ласка, предмет</span>
+              )}
+            </label>
+          </div>
+          <div className="contact-modal-form__textarea">
+            <label>
+              <span>Інші побажання</span>
+              <textarea {...register("about")}></textarea>
+            </label>
+          </div>
         </div>
         {isError && (
           <p className="contact-modal-form__error">

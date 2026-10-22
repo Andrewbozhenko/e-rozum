@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { Swiper, Navigation } from "swiper";
 import "swiper/swiper.css";
-import { TEACHERS } from "@utils";
+import { TEACHERS, useModal } from "@utils";
 import { Teacher } from "@components/cards/teacher";
+import { ButtonEnroll } from "@components/ui";
 
 export const Teachers = () => {
+  const { toggleContactModal } = useModal();
   useEffect(() => {
     Swiper.use([Navigation]);
     const swiper = new Swiper(".teachers__slider", {
@@ -118,6 +120,13 @@ export const Teachers = () => {
                 </svg>
               </div>
             </div>
+          </div>
+
+          <div className="teachers__cta">
+            <ButtonEnroll
+              text="Записатись на перший безкоштовний урок"
+              onClick={() => toggleContactModal()}
+            />
           </div>
         </div>
       </div>
